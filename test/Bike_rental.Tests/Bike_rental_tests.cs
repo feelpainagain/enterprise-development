@@ -29,7 +29,7 @@ public class BikeRentalTests(BikeRentalDataSeed seed) : IClassFixture<BikeRental
     [Fact]
     public void GetTop5BikeModelsByRentalDuration()
     {
-        var currentDate = DateTime.Now; // Use current date and time
+        var currentDate = new DateTime(2025, 10, 1); // After all seed rentals
         var top5ByDuration = (from r in seed.RentalContracts
                               join b in seed.Bicycles on r.BicycleSerialNumber equals b.SerialNumber
                               join m in seed.BikeModels on b.ModelId equals m.ModelId
@@ -44,14 +44,24 @@ public class BikeRentalTests(BikeRentalDataSeed seed) : IClassFixture<BikeRental
                               .Take(5)
                               .ToList();
 
+        // Debug: Check total groups before Take(5)
+        var allGroups = (from r in seed.RentalContracts
+                         join b in seed.Bicycles on r.BicycleSerialNumber equals b.SerialNumber
+                         join m in seed.BikeModels on b.ModelId equals m.ModelId
+                         where r.StartTime <= currentDate
+                         group r by m.ModelId into g
+                         select g)
+                         .Count();
+        Console.WriteLine($"Total groups before Take(5): {allGroups}");
+
         Assert.NotNull(top5ByDuration);
-        Assert.Equal(5, top5ByDuration.Count); // Expecting 5 due to unique ModelIds
+        Assert.Equal(5, top5ByDuration.Count); // Expecting 5 after Take(5)
     }
 
-        /// <summary>
-        /// Test that retrieves top 5 bike models by rental profit.
-        /// </summary>
-        [Fact]
+    /// <summary>
+    /// Test that retrieves top 5 bike models by rental profit.
+    /// </summary>
+    [Fact]
         public void GetTop5BikeModelsByRentalProfit()
         {
             var currentDate = new DateTime(2025, 10, 1); // Date after all seed rentals
