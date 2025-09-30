@@ -15,7 +15,7 @@
 	</ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\bike_rental.models\Bike_rental.Models.csproj" />
+    <ProjectReference Include="..\..\src\bike_rental.models\Bike_rental.Models.csproj" />
   </ItemGroup>
 
 	<ItemGroup>
