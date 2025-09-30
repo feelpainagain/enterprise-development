@@ -48,30 +48,30 @@ public class BikeRentalTests(BikeRentalDataSeed seed) : IClassFixture<BikeRental
         Assert.Equal(5, top5ByDuration.Count); // Expecting 5 due to unique ModelIds
     }
 
-    /// <summary>
-    /// Test that retrieves top 5 bike models by rental profit.
-    /// </summary>
-    [Fact]
-    public void GetTop5BikeModelsByRentalProfit()
-    {
-        var currentDate = DateTime.Now; // Use current date and time
-        var top5ByProfit = (from r in seed.RentalContracts
-                            join b in seed.Bicycles on r.BicycleSerialNumber equals b.SerialNumber
-                            join m in seed.BikeModels on b.ModelId equals m.ModelId
-                            where r.StartTime <= currentDate
-                            group new { r, m } by m.ModelId into g
-                            select new
-                            {
-                                ModelId = g.Key,
-                                TotalProfit = g.Sum(x => x.m.HourlyRentalPrice * (decimal)x.r.RentalDurationHours)
-                            })
-                            .OrderByDescending(x => x.TotalProfit)
-                            .Take(5)
-                            .ToList();
+        /// <summary>
+        /// Test that retrieves top 5 bike models by rental profit.
+        /// </summary>
+        [Fact]
+        public void GetTop5BikeModelsByRentalProfit()
+        {
+            var currentDate = new DateTime(2025, 10, 1); // Date after all seed rentals
+            var top5ByProfit = (from r in seed.RentalContracts
+                                join b in seed.Bicycles on r.BicycleSerialNumber equals b.SerialNumber
+                                join m in seed.BikeModels on b.ModelId equals m.ModelId
+                                where r.StartTime <= currentDate
+                                group new { r, m } by m.ModelId into g
+                                select new
+                                {
+                                    ModelId = g.Key,
+                                    TotalProfit = g.Sum(x => x.m.HourlyRentalPrice * (decimal)x.r.RentalDurationHours)
+                                })
+                                .OrderByDescending(x => x.TotalProfit)
+                                .Take(5)
+                                .ToList();
 
-        Assert.NotNull(top5ByProfit);
-        Assert.Equal(5, top5ByProfit.Count); // Expecting 5 due to unique ModelIds
-    }
+            Assert.NotNull(top5ByProfit);
+            Assert.Equal(5, top5ByProfit.Count);
+        }
 
     /// <summary>
     /// Test that retrieves total rental time by bike type.
