@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35825.156
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "src\Bike_rental.Models", "src\bike_rental.models\Bike_rental.Models.csproj", "{9B42B665-B76E-423B-AA66-66D9B0AE9868}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "src\BikeRental.Models", "src\BikeRental.Models\BikeRental.Models.csproj", "{9B42B665-B76E-423B-AA66-66D9B0AE9868}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test\Bike_rental.Tests", "test\Bike_rental.Tests\Bike_rental.Tests.csproj", "{5DD34BAE-1639-4A31-BDAA-F9492D503EC0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test\BikeRental.Tests", "test\BikeRental.Tests\BikeRental.Tests.csproj", "{5DD34BAE-1639-4A31-BDAA-F9492D503EC0}"
 	ProjectSection(ProjectDependencies) = postProject
 		{9B42B665-B76E-423B-AA66-66D9B0AE9868} = {9B42B665-B76E-423B-AA66-66D9B0AE9868}
 	EndProjectSection

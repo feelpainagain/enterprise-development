@@ -1,11 +1,11 @@
-﻿namespace Bike_rental.Models;
+﻿namespace BikeRental.Models;
 
 public class BikeModel
 {
     /// <summary>
     /// Unique identifier for the bike model.
     /// </summary>
-    public required string ModelId { get; set; }
+    public required int Id { get; set; }
 
     /// <summary>
     /// Type of the bicycle (e.g., mountain, road, hybrid).

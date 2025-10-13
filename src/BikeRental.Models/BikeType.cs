@@ -1,4 +1,4 @@
-﻿namespace Bike_rental.Models;
+﻿namespace BikeRental.Models;
 
 public enum BikeType
 {
