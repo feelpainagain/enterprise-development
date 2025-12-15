@@ -31,25 +31,25 @@ public class BikeRentalTests(BikeRentalDataSeed seed) : IClassFixture<BikeRental
     [Fact]
     public void GetTop5BikeModelsByRentalDuration()
     {
-        var currentDate = new DateTime(2025, 10, 1); 
-
-        var allGroups = (from rental in seed.RentalContracts
-                         join bicycle in seed.Bicycles on rental.BicycleId equals bicycle.Id
-                         join model in seed.BikeModels on bicycle.ModelId equals model.Id
-                         where rental.StartTime <= currentDate
-                         group rental by model.Id into g
-                         select new
-                         {
-                             ModelId = g.Key,
-                             TotalDuration = g.Sum(x => x.RentalDurationHours)
-                         })
-                         .OrderByDescending(x => x.TotalDuration)
-                         .ToList();
-
-        var top5ByDuration = allGroups.Take(5).ToList();
-
-        Console.WriteLine($"Total groups before Take(5): {allGroups.Count}");
         var expectedCount = 5;
+
+        var currentDate = new DateTime(2025, 10, 1);
+
+        var top5ByDuration = (from rental in seed.RentalContracts
+                              join bicycle in seed.Bicycles on rental.BicycleId equals bicycle.Id
+                              join model in seed.BikeModels on bicycle.ModelId equals model.Id
+                              where rental.StartTime <= currentDate
+                              group rental by model.Id into g
+                              select new
+                              {
+                                  ModelId = g.Key,
+                                  TotalDuration = g.Sum(x => x.RentalDurationHours)
+                              })
+                             .OrderByDescending(x => x.TotalDuration)
+                             .Take(5)
+                             .ToList();
+
+
         Assert.NotNull(top5ByDuration);
         Assert.Equal(expectedCount, top5ByDuration.Count); 
 
@@ -64,6 +64,8 @@ public class BikeRentalTests(BikeRentalDataSeed seed) : IClassFixture<BikeRental
     [Fact]
     public void GetTop5BikeModelsByRentalProfit()
     {
+        var expectedCount = 5;
+
         var currentDate = new DateTime(2025, 10, 1);
         var top5ByProfit = (from rental in seed.RentalContracts
                             join bicycle in seed.Bicycles on rental.BicycleId equals bicycle.Id
@@ -79,7 +81,6 @@ public class BikeRentalTests(BikeRentalDataSeed seed) : IClassFixture<BikeRental
                             .Take(5)
                             .ToList();
 
-        var expectedCount = 5;
         Assert.NotNull(top5ByProfit);
         Assert.Equal(expectedCount, top5ByProfit.Count);
 
@@ -94,6 +95,8 @@ public class BikeRentalTests(BikeRentalDataSeed seed) : IClassFixture<BikeRental
     [Fact]
     public void GetTotalRentalTimeByBikeType()
     {
+        var expectedCount = 3;
+
         var currentDate = DateTime.Now; 
         var totalTimeByType = (from rental in seed.RentalContracts
                                join bicycle in seed.Bicycles on rental.BicycleId equals bicycle.Id
@@ -107,7 +110,6 @@ public class BikeRentalTests(BikeRentalDataSeed seed) : IClassFixture<BikeRental
                                })
                                .ToList();
 
-        var expectedCount = 3; // Expecting Mountain, Road, Hybrid
         Assert.NotNull(totalTimeByType);
         Assert.Equal(expectedCount, totalTimeByType.Count);
 
@@ -123,10 +125,11 @@ public class BikeRentalTests(BikeRentalDataSeed seed) : IClassFixture<BikeRental
     public void GetRentalDurationStatistics()
     {
         var currentDate = DateTime.Now;
+
         var rentalDurations = (from rental in seed.RentalContracts
                                where rental.StartTime <= currentDate
-                               select rental.RentalDurationHours)
-                               .ToList();
+                               select (double)rental.RentalDurationHours)
+                              .ToList();
 
         Assert.NotEmpty(rentalDurations);
 
@@ -134,9 +137,13 @@ public class BikeRentalTests(BikeRentalDataSeed seed) : IClassFixture<BikeRental
         var maxDuration = rentalDurations.Max();
         var avgDuration = rentalDurations.Average();
 
-        Assert.True(minDuration >= 0);
-        Assert.True(maxDuration >= minDuration);
-        Assert.True(avgDuration >= 0 && avgDuration <= maxDuration);
+        const double expectedMin = 1.0;
+        const double expectedMax = 3.0;
+        const double expectedAvg = 2.0;
+
+        Assert.Equal(expectedMin, minDuration, 2);
+        Assert.Equal(expectedMax, maxDuration, 2);
+        Assert.Equal(expectedAvg, avgDuration, 2);
     }
 
     /// <summary>
@@ -145,6 +152,8 @@ public class BikeRentalTests(BikeRentalDataSeed seed) : IClassFixture<BikeRental
     [Fact]
     public void GetTopClients()
     {
+        var expectedCount = 5;
+
         var currentDate = DateTime.Now;
 
         var topClients = (from rental in seed.RentalContracts
@@ -159,8 +168,7 @@ public class BikeRentalTests(BikeRentalDataSeed seed) : IClassFixture<BikeRental
                           .OrderByDescending(x => x.RentalCount)
                           .Take(5)
                           .ToList();
-
-        var expectedCount = 5; 
+ 
         Assert.NotNull(topClients);
         Assert.Equal(expectedCount, topClients.Count);
 

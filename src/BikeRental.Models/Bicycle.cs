@@ -20,5 +20,5 @@ public class Bicycle
     /// <summary>
     /// Serial number of the bicycle (optional, for reference).
     /// </summary>
-    public string SerialNumber { get; set; }
+    public required string SerialNumber { get; set; }
 }
