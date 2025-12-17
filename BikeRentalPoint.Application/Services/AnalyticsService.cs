@@ -7,6 +7,8 @@ using BikeRentalPoint.Domain;
 using BikeRentalPoint.Domain.Models;
 using BikeRentalPoint.Shared.Enums;
 
+namespace BikeRentalPoint.Application.Services;
+
 /// <summary>
 /// Interface for performing analytical queries
 /// </summary>
@@ -24,10 +26,9 @@ public class AnalyticsService(
     public async Task<IList<BikeDto>> GetMountainBikesAsync()
     {
         var bikes = await bikeRepository.GetAll();
-        var models = await modelRepository.GetAll();
 
         var mountainBikes = bikes
-            .Where(b => models.First(m => m.Id == b.ModelId).BikeType == BikeType.Mountain)
+            .Where(b => b.Model != null && b.Model.BikeType == BikeType.Mountain)
             .ToList();
 
         return mapper.Map<List<BikeDto>>(mountainBikes);
@@ -40,20 +41,16 @@ public class AnalyticsService(
     public async Task<IList<ModelDto>> GetTopModelsByProfitAsync()
     {
         var rents = await rentRepository.GetAll();
-        var bikes = await bikeRepository.GetAll();
         var models = await modelRepository.GetAll();
 
         var modelProfits = rents
-            .GroupBy(r => bikes.First(b => b.Id == r.BikeId).ModelId)
+            .Where(r => r.Bike != null && r.Bike.Model != null)
+            .GroupBy(r => r.Bike.ModelId)
             .Select(g => new
             {
                 ModelId = g.Key,
                 Profit = g.Sum(r =>
-                {
-                    var bike = bikes.First(b => b.Id == r.BikeId);
-                    var model = models.First(m => m.Id == bike.ModelId);
-                    return (decimal)r.Duration.TotalHours * model.PricePerHour;
-                })
+                    (decimal)r.Duration.TotalHours * r.Bike!.Model!.PricePerHour)
             })
             .OrderByDescending(x => x.Profit)
             .Take(5)
@@ -70,11 +67,11 @@ public class AnalyticsService(
     public async Task<IList<ModelDto>> GetTopModelsByDurationAsync()
     {
         var rents = await rentRepository.GetAll();
-        var bikes = await bikeRepository.GetAll();
         var models = await modelRepository.GetAll();
 
         var modelDurations = rents
-            .GroupBy(r => bikes.First(b => b.Id == r.BikeId).ModelId)
+            .Where(r => r.Bike != null && r.Bike.Model != null)
+            .GroupBy(r => r.Bike.ModelId)
             .Select(g => new
             {
                 ModelId = g.Key,
@@ -98,7 +95,7 @@ public class AnalyticsService(
 
         var durations = rents.Select(r => r.Duration.TotalHours).ToList();
 
-        if (!durations.Any())
+        if (durations.Count == 0)
             return new RentalStatisticsDto(0, 0, 0);
 
         var min = durations.Min();
@@ -107,6 +104,7 @@ public class AnalyticsService(
 
         return new RentalStatisticsDto(min, max, avg);
     }
+
 
     /// <summary>
     /// Get the best renters by the number of rentals
@@ -139,16 +137,13 @@ public class AnalyticsService(
     public async Task<IList<BikeTypeDurationDto>> GetTotalRentDurationByTypeAsync()
     {
         var rents = await rentRepository.GetAll();
-        var bikes = await bikeRepository.GetAll();
-        var models = await modelRepository.GetAll();
 
         var grouped = rents
-            .Join(bikes, rent => rent.BikeId, bike => bike.Id, (rent, bike) => new { rent, bike })
-            .Join(models, rb => rb.bike.ModelId, model => model.Id, (rb, model) => new { rb.rent, model })
-            .GroupBy(x => x.model.BikeType)
+            .Where(r => r.Bike != null && r.Bike.Model != null)
+            .GroupBy(r => r.Bike.Model.BikeType)
             .Select(g => new BikeTypeDurationDto(
                 Type: g.Key,
-                TotalHours: g.Sum(x => x.rent.Duration.TotalHours)
+                TotalHours: g.Sum(r => r.Duration.TotalHours)
             ))
             .ToList();
 

@@ -1,6 +1,4 @@
-﻿using BikeRentalPoint.Application.Contracts.Bike;
-using BikeRentalPoint.Application.Contracts.Rent;
-using BikeRentalPoint.Application.Contracts.Renter;
+﻿using BikeRentalPoint.Application.Contracts.Rent;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BikeRentalPoint.Api.Host.Controllers;
@@ -93,61 +91,14 @@ public class RentsController(IRentService service, ILogger<RentsController> logg
     /// Deletes a rental by unique identifier
     /// </summary>
     /// <param name="id">The unique identifier of the rental to delete</param>
-    /// <returns>True if deletion was successful; otherwise, false</returns>
+    /// <returns>No content if successful</returns>
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult> Delete(Guid id)
     {
         logger.LogInformation("Called Delete in RentsController");
-        var result = await service.Delete(id);
-        if (result) return NoContent();
-        return NotFound();
-    }
-
-    /// <summary>
-    /// Gets the bicycle information for a specific rental
-    /// </summary>
-    /// <param name="id">The unique identifier of the rental</param>
-    /// <returns>The bicycle details associated with the rental</returns>
-    [HttpGet("{id:guid}/bike")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<BikeDto>> GetRentBike(Guid id)
-    {
-        logger.LogInformation("Called GetRentBike in RentsController");
-        try
-        {
-            var result = await service.GetRentBike(id);
-            return Ok(result);
-        }
-        catch (KeyNotFoundException)
-        {
-            return NotFound();
-        }
-    }
-
-    /// <summary>
-    /// Gets the renter information for a specific rental
-    /// </summary>
-    /// <param name="id">The unique identifier of the rental</param>
-    /// <returns>The renter details associated with the rental</returns>
-    [HttpGet("{id:guid}/renter")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<RenterDto>> GetRentRenter(Guid id)
-    {
-        logger.LogInformation("Called GetRentRenter in RentsController");
-        try
-        {
-            var result = await service.GetRentRenter(id);
-            return Ok(result);
-        }
-        catch (KeyNotFoundException)
-        {
-            return NotFound();
-        }
+        await service.Delete(id);
+        return NoContent();
     }
 }

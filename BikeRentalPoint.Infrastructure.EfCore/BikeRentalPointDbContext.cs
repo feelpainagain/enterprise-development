@@ -1,10 +1,10 @@
-﻿using BikeRentalPoint.Domain.Fixture;
+﻿using BikeRentalPoint.Domain.Dataseed;
 using BikeRentalPoint.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace BikeRentalPoint.Infrastructure.EfCore;
 
-public class BikeRentalPointDbContext(DbContextOptions<BikeRentalPointDbContext> options, DataSeed seeder) : DbContext(options)
+public class BikeRentalPointDbContext(DbContextOptions<BikeRentalPointDbContext> options, DataSeeder seeder) : DbContext(options)
 {
     public DbSet<Bike> Bikes { get; set; }
 
@@ -140,12 +140,12 @@ public class BikeRentalPointDbContext(DbContextOptions<BikeRentalPointDbContext>
             entity.HasOne(r => r.Bike)
             .WithMany()
             .HasForeignKey(r => r.BikeId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Cascade);
 
             entity.HasOne(r => r.Renter)
             .WithMany()
             .HasForeignKey(r => r.RenterId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Cascade);
 
             entity.HasData(seeder.Rents);
         });

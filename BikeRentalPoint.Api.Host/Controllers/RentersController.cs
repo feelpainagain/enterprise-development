@@ -92,15 +92,14 @@ public class RentersController(IApplicationService<RenterDto, CreateRenterDto, G
     /// Deletes a renter by unique identifier
     /// </summary>
     /// <param name="id">The unique identifier of the renter to delete</param>
-    /// <returns>True if deletion was successful; otherwise, false</returns>
+    /// <returns>No content if deletion was successful</returns>
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult> Delete(Guid id)
     {
         logger.LogInformation("Called Delete in RentersController");
-        var result = await service.Delete(id);
-        if (result) return NoContent();
-        return NotFound();
+        await service.Delete(id);
+        return NoContent();
     }
 }

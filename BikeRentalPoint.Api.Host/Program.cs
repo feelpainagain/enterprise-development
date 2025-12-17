@@ -7,7 +7,7 @@ using BikeRentalPoint.Application.Contracts.Rent;
 using BikeRentalPoint.Application.Contracts.Renter;
 using BikeRentalPoint.Application.Services;
 using BikeRentalPoint.Domain;
-using BikeRentalPoint.Domain.Fixture;
+using BikeRentalPoint.Domain.Dataseed;
 using BikeRentalPoint.Domain.Models;
 using BikeRentalPoint.Infrastructure.EfCore;
 using BikeRentalPoint.Infrastructure.EfCore.Repository;
@@ -15,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.AddServiceDefaults();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -37,7 +38,7 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddAutoMapper(typeof(BikeRentalProfile));
 
 
-builder.Services.AddSingleton<DataSeed>();
+builder.Services.AddSingleton<DataSeeder>();
 
 builder.AddMySqlDbContext<BikeRentalPointDbContext>(connectionName: "DefaultConnection", configureDbContextOptions: builder => builder.UseLazyLoadingProxies());
 

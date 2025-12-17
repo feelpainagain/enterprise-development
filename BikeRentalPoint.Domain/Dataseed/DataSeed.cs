@@ -1,12 +1,12 @@
 ﻿using BikeRentalPoint.Domain.Models;
 using BikeRentalPoint.Shared.Enums;
 
-namespace BikeRentalPoint.Domain.Fixture;
+namespace BikeRentalPoint.Domain.Dataseed;
 
 /// <summary>
 /// Fixture data for unit-tests
 /// </summary>
-public class DataSeed
+public class DataSeeder
 {
     /// <summary>
     /// List of bicycle models
@@ -31,7 +31,7 @@ public class DataSeed
     /// <summary>
     /// Initializes test data
     /// </summary>
-    public DataSeed()
+    public DataSeeder()
     {
         Models.AddRange([
             new Model { WheelSize = 28, MaxPassengerWeight = 100, BikeWeight = 9, BrakeType = BrakeType.Disc, ModelYear = 2022, PricePerHour = 12, BikeType = BikeType.Road },

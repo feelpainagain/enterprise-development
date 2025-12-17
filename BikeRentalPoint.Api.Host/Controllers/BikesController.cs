@@ -1,5 +1,4 @@
 ﻿using BikeRentalPoint.Application.Contracts.Bike;
-using BikeRentalPoint.Application.Contracts.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BikeRentalPoint.Api.Host.Controllers;
@@ -92,38 +91,14 @@ public class BikesController(IBikeService service, ILogger<BikesController> logg
     /// Deletes a bicycle by unique identifier
     /// </summary>
     /// <param name="id">The unique identifier of the bicycle to delete</param>
-    /// <returns>True if deletion was successful; otherwise, false</returns>
+    /// <returns>No content if deletion was successful</returns>
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult> Delete(Guid id)
     {
         logger.LogInformation("Called Delete in BikesController");
-        var result = await service.Delete(id);
-        if (result) return NoContent();
-        return NotFound();
-    }
-
-    /// <summary>
-    /// Gets the model information for a specific bicycle
-    /// </summary>
-    /// <param name="id">The unique identifier of the bicycle</param>
-    /// <returns>The model details of the bicycle</returns>
-    [HttpGet("{id:guid}/model")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<ModelDto>> GetBikeModel(Guid id)
-    {
-        logger.LogInformation("Called GetBikeModel in BikesController");
-        try
-        {
-            var result = await service.GetBikeModel(id);
-            return Ok(result);
-        }
-        catch (KeyNotFoundException)
-        {
-            return NotFound();
-        }
+        await service.Delete(id);
+        return NoContent();
     }
 }

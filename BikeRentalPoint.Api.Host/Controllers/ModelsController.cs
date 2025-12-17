@@ -92,15 +92,14 @@ public class ModelsController(IApplicationService<ModelDto, CreateModelDto, Guid
     /// Deletes a model by unique identifier
     /// </summary>
     /// <param name="id">The unique identifier of the model to delete</param>
-    /// <returns>True if deletion was successful; otherwise, false</returns>
+    /// <returns>No content if deletion was successful</returns>
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult> Delete(Guid id)
     {
         logger.LogInformation("Called Delete in ModelsController");
-        var result = await service.Delete(id);
-        if (result) return NoContent();
-        return NotFound();
+        await service.Delete(id);
+        return NoContent();
     }
 }
