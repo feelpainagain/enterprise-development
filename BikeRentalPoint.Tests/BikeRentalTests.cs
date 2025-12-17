@@ -1,4 +1,4 @@
-using BikeRentalPoint.Domain.Fixture;
+using BikeRentalPoint.Domain.Dataseed;
 using BikeRentalPoint.Shared.Enums;
 
 
@@ -7,9 +7,9 @@ namespace BikeRentalPoint.Tests;
 /// <summary>
 /// Unit tests
 /// </summary>
-public class BikeRentalTests(DataSeed fixture) : IClassFixture<DataSeed>
+public class BikeRentalTests(DataSeeder fixture) : IClassFixture<DataSeeder>
 {
-    private readonly DataSeed _fixture = fixture;
+    private readonly DataSeeder _fixture = fixture;
 
     /// <summary>
     /// Tests retrieval of all mountain bikes 

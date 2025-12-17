@@ -13,6 +13,7 @@ using BikeRentalPoint.Infrastructure.EfCore;
 using BikeRentalPoint.Infrastructure.EfCore.Repository;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
+using BikeRentalPoint.ServiceDefaults;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
