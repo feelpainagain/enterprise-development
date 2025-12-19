@@ -45,7 +45,7 @@ public class AnalyticsService(
 
         var modelProfits = rents
             .Where(r => r.Bike != null && r.Bike.Model != null)
-            .GroupBy(r => r.Bike.ModelId)
+            .GroupBy(r => r.Bike!.ModelId)
             .Select(g => new
             {
                 ModelId = g.Key,
@@ -71,7 +71,7 @@ public class AnalyticsService(
 
         var modelDurations = rents
             .Where(r => r.Bike != null && r.Bike.Model != null)
-            .GroupBy(r => r.Bike.ModelId)
+            .GroupBy(r => r.Bike!.ModelId)
             .Select(g => new
             {
                 ModelId = g.Key,
@@ -140,7 +140,7 @@ public class AnalyticsService(
 
         var grouped = rents
             .Where(r => r.Bike != null && r.Bike.Model != null)
-            .GroupBy(r => r.Bike.Model.BikeType)
+            .GroupBy(r => r.Bike!.Model!.BikeType)
             .Select(g => new BikeTypeDurationDto(
                 Type: g.Key,
                 TotalHours: g.Sum(r => r.Duration.TotalHours)

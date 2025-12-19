@@ -111,7 +111,7 @@ public class BikeRentalPointDbContext(DbContextOptions<BikeRentalPointDbContext>
             entity.HasMany<Rent>()
             .WithOne(r => r.Renter)
             .HasForeignKey(r => r.RenterId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Cascade);
 
             entity.HasData(seeder.Renters);
         });

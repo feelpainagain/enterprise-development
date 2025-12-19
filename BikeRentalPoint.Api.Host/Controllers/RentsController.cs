@@ -91,7 +91,7 @@ public class RentsController(IRentService service, ILogger<RentsController> logg
     /// Deletes a rental by unique identifier
     /// </summary>
     /// <param name="id">The unique identifier of the rental to delete</param>
-    /// <returns>No content if successful</returns>
+    /// <returns>No content if deletion was successful</returns>
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
