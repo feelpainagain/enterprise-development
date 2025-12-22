@@ -1,4 +1,4 @@
-using BikeRentalPoint.Application;
+﻿using BikeRentalPoint.Application;
 using BikeRentalPoint.Application.Contracts;
 using BikeRentalPoint.Application.Contracts.Analytics;
 using BikeRentalPoint.Application.Contracts.Bike;
@@ -14,6 +14,9 @@ using BikeRentalPoint.Infrastructure.EfCore.Repository;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using BikeRentalPoint.ServiceDefaults;
+
+using BikeRentalPoint.Api.Host.Grpc;
+using BikeRentalPoint.Grpc.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
@@ -38,10 +41,11 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddAutoMapper(typeof(BikeRentalProfile));
 
-
 builder.Services.AddSingleton<DataSeeder>();
 
-builder.AddMySqlDbContext<BikeRentalPointDbContext>(connectionName: "DefaultConnection", configureDbContextOptions: builder => builder.UseLazyLoadingProxies());
+builder.AddMySqlDbContext<BikeRentalPointDbContext>(
+    connectionName: "DefaultConnection",
+    configureDbContextOptions: builder => builder.UseLazyLoadingProxies());
 
 builder.Services.AddControllers().AddJsonOptions(o =>
 {
@@ -58,6 +62,15 @@ builder.Services.AddScoped<IApplicationService<ModelDto, CreateModelDto, Guid>, 
 builder.Services.AddScoped<IApplicationService<RenterDto, CreateRenterDto, Guid>, RenterService>();
 builder.Services.AddScoped<IRentService, RentService>();
 builder.Services.AddScoped<IAnalyticsService, AnalyticsService>();
+
+// gRPC‑клиент к генератору
+builder.Services.AddGrpcClient<GenerationService.GenerationServiceClient>(o =>
+{
+    o.Address = new Uri("http://localhost:5002"); // только адрес
+});
+
+// consumer
+builder.Services.AddScoped<GrpcClientConsumer>();
 
 var app = builder.Build();
 

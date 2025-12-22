@@ -7,4 +7,6 @@ builder.AddProject<Projects.BikeRentalPoint_Api_Host>("api")
     .WithReference(mysql, "DefaultConnection")
     .WaitFor(mysql);
 
+builder.AddProject<Projects.BikeRentalPoint_Generation_GrpcServer>("bikerentalpoint-generation-grpcserver");
+
 builder.Build().Run();

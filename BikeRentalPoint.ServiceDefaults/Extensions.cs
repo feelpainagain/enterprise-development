@@ -26,14 +26,17 @@ public static class Extensions
 
         builder.Services.AddServiceDiscovery();
 
-        builder.Services.ConfigureHttpClientDefaults(http =>
-        {
-            // Turn on resilience by default
-            http.AddStandardResilienceHandler();
+        //builder.Services.ConfigureHttpClientDefaults(http =>
+        //{
+        //    if (http.Name?.EndsWith("GenerationServiceClient") == true)
+        //    {
+        //        return;
+        //    }
 
-            // Turn on service discovery by default
-            http.AddServiceDiscovery();
-        });
+        //    http.AddStandardResilienceHandler();
+        //    http.AddServiceDiscovery();
+        //});
+
 
         // Uncomment the following to restrict the allowed schemes for service discovery.
         // builder.Services.Configure<ServiceDiscoveryOptions>(options =>

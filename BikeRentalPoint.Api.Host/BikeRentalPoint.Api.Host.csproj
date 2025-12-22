@@ -16,14 +16,18 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="9.0.10" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.6" />
+	  <PackageReference Include="Grpc.AspNetCore" Version="2.62.0" />
+	  <PackageReference Include="Grpc.AspNetCore.Server.Reflection" Version="2.62.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BikeRentalPoint.Application\BikeRentalPoint.Application.csproj" />
+    <ProjectReference Include="..\BikeRentalPoint.GrpcContracts\BikeRentalPoint.GrpcContracts.csproj" />
     <ProjectReference Include="..\BikeRentalPoint.ServiceDefaults\BikeRentalPoint.ServiceDefaults.csproj" />
 	<ProjectReference Include="..\BikeRentalPoint.Domain\BikeRentalPoint.Domain.csproj" />
 	<ProjectReference Include="..\BikeRentalPoint.Application.Contracts\BikeRentalPoint.Application.Contracts.csproj" />
 	<ProjectReference Include="..\BikeRentalPoint.Infrastructure.EfCore\BikeRentalPoint.Infrastructure.EfCore.csproj" />
+	<Protobuf Include="..\BikeRentalPoint.GrpcContracts\Protos\generation.proto" GrpcServices="Client" Link="Protos\generation.proto" />
 
   </ItemGroup>
 

@@ -1,0 +1,102 @@
+syntax = "proto3";
+
+option csharp_namespace = "BikeRentalPoint.Grpc.Contracts";
+
+service GenerationService {
+  rpc Generate(stream GenerationRequest)
+      returns (stream GenerationResponse);
+}
+
+message GenerationRequest {
+  oneof payload {
+    StartGeneration start = 1;
+    BatchAck ack = 2;
+  }
+}
+
+message StartGeneration {
+  int32 total_count = 1;
+  int32 batch_size = 2;
+}
+
+message BatchAck {
+  int32 batch_number = 1;
+}
+
+message GenerationResponse {
+  oneof payload {
+    RentBatch batch = 1;
+    GenerationCompleted completed = 2;
+    GenerationError error = 3;
+  }
+}
+
+message GenerationCompleted {
+  int32 total_batches = 1;
+}
+
+message GenerationError {
+  string message = 1;
+}
+
+message RentBatch {
+  int32 batch_number = 1;
+  repeated BikeGrpc bikes = 2;
+  repeated RenterGrpc renters = 3;
+  repeated RentGrpc rents = 4;
+  repeated ModelGrpc models = 5;
+}
+
+message BikeGrpc {
+  string id = 1;
+  string serial_number = 2;
+  string color = 3;     
+  string model_id = 4;
+}
+
+message ModelGrpc {
+  string id = 1;
+  double wheel_size = 2;
+  double max_passenger_weight = 3;
+  double bike_weight = 4;
+  BrakeTypeGrpc brake_type = 5;
+  int32 model_year = 6;
+  double price_per_hour = 7;
+  BikeTypeGrpc bike_type = 8;
+}
+
+message RentGrpc {
+  string id = 1;
+  string start_time = 2;    
+  int32 duration_minutes = 3;
+  string bike_id = 4;
+  string renter_id = 5;
+}
+
+message RenterGrpc {
+  string id = 1;
+  string last_name = 2;
+  string name = 3;
+  string middle_name = 4;
+  string phone_number = 5;
+}
+
+enum BikeTypeGrpc {
+  BIKE_TYPE_UNSPECIFIED = 0;
+  ROAD = 1;
+  MOUNTAIN = 2;
+  HYBRID = 3;
+  ELECTRIC = 4;
+  FOLDING = 5;
+  TWO_SEAT = 6;
+}
+
+enum BrakeTypeGrpc {
+  BRAKE_TYPE_UNSPECIFIED = 0;
+  RIM = 1;
+  DISC = 2;
+  DRUM = 3;
+  TAPE = 4;
+  SPOON = 5;
+  ROD_ACTUATED = 6;
+}
