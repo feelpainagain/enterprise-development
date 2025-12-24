@@ -4,6 +4,7 @@ using BikeRentalPoint.Infrastructure.EfCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BikeRentalPoint.Infrastructure.EfCore.Migrations
 {
     [DbContext(typeof(BikeRentalPointDbContext))]
-    partial class BikeRentalPointDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251224103425_UpdateBikeRentalModel")]
+    partial class UpdateBikeRentalModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,72 +59,72 @@ namespace BikeRentalPoint.Infrastructure.EfCore.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("7cbe88b3-efd6-43d3-abf3-ac8e8d9ea158"),
+                            Id = new Guid("f7ea642e-c7d8-4a66-9660-757e1d55e1f2"),
                             Color = "Red",
-                            ModelId = new Guid("26af4f3e-a8ce-4780-ba61-11c1b02e8c8f"),
+                            ModelId = new Guid("6a9c0efe-2bc0-4e64-9c4f-fdc9fff23108"),
                             SerialNumber = "101"
                         },
                         new
                         {
-                            Id = new Guid("610365e0-c878-4296-a66f-e901fb12bbaa"),
+                            Id = new Guid("80cf1be0-4bd7-40b2-9e48-b86cb56fff12"),
                             Color = "Blue",
-                            ModelId = new Guid("01c16a54-51b0-4e1d-baa0-cbd9edfb1e68"),
+                            ModelId = new Guid("671e5425-28a2-4d9f-bc07-5dd81f8f3c64"),
                             SerialNumber = "102"
                         },
                         new
                         {
-                            Id = new Guid("623f5102-30c6-4b97-a492-f6ad9bc6cd20"),
+                            Id = new Guid("160e4ff6-8a73-4df8-be70-a97a5428ee83"),
                             Color = "Black",
-                            ModelId = new Guid("ab60dde3-c3b4-4424-98a5-523596d84e49"),
+                            ModelId = new Guid("b5b6735d-45fa-4c62-b653-db81f7121d84"),
                             SerialNumber = "103"
                         },
                         new
                         {
-                            Id = new Guid("ad3afcbe-6b97-4b96-8ba2-deaf5d2c53b5"),
+                            Id = new Guid("2cc7ef72-0a74-4cdd-83a9-c3e163f0dd70"),
                             Color = "Green",
-                            ModelId = new Guid("29a4a967-f786-460b-aa3a-09fe77ebc4cd"),
+                            ModelId = new Guid("4d46e705-4b64-40d3-8883-f12934993abc"),
                             SerialNumber = "104"
                         },
                         new
                         {
-                            Id = new Guid("b60d7365-728c-4801-984b-45f47a23876d"),
+                            Id = new Guid("b6ce7e19-cd47-4fd6-a531-c48e5809d555"),
                             Color = "White",
-                            ModelId = new Guid("001e6fcd-5a65-4592-8475-598bae3421bc"),
+                            ModelId = new Guid("8dea56e8-6982-4339-8a8b-5b08b43e36be"),
                             SerialNumber = "105"
                         },
                         new
                         {
-                            Id = new Guid("1d12d97a-593b-4a03-b151-d65bf8aa3a84"),
+                            Id = new Guid("aad23158-ce0b-41ac-836b-a66c0a57ce30"),
                             Color = "Yellow",
-                            ModelId = new Guid("86571f83-df76-49d4-8066-3d778049c98d"),
+                            ModelId = new Guid("e45334d8-7bd4-4d04-ba7a-9a382185c4f9"),
                             SerialNumber = "106"
                         },
                         new
                         {
-                            Id = new Guid("3d57e48d-c20b-4beb-bf0f-0050a490fa4c"),
+                            Id = new Guid("4948faf4-935b-4d9a-800a-4e2816760d68"),
                             Color = "Silver",
-                            ModelId = new Guid("950a5ff4-beb7-42ae-9fe2-bc6a351fe380"),
+                            ModelId = new Guid("e2ad9828-414d-409e-b3e1-344ff44b19c1"),
                             SerialNumber = "107"
                         },
                         new
                         {
-                            Id = new Guid("c39de33e-b0fe-4ec8-bb97-02dcd929528c"),
+                            Id = new Guid("d546a410-ebd2-49cc-a6cf-e9e0eb3c3daa"),
                             Color = "Gray",
-                            ModelId = new Guid("223d4e89-84d2-4606-88db-5cbb6649dbfc"),
+                            ModelId = new Guid("e7c23725-116a-4e40-a1cc-660a5373d188"),
                             SerialNumber = "108"
                         },
                         new
                         {
-                            Id = new Guid("6e872a9a-bacb-4d0d-baa0-b72af61a56a7"),
+                            Id = new Guid("dfecdb38-11f8-4d75-ba9c-35787ff76810"),
                             Color = "Orange",
-                            ModelId = new Guid("ed8f35b4-7af5-4681-a8a7-b18d0227f3aa"),
+                            ModelId = new Guid("b8061bf4-0826-43e6-9cbc-41ee8452d755"),
                             SerialNumber = "109"
                         },
                         new
                         {
-                            Id = new Guid("9a49bfd3-fe3b-43f5-a884-fb2136488f54"),
+                            Id = new Guid("8cdfc712-b2b0-451a-8196-358529d251ac"),
                             Color = "Purple",
-                            ModelId = new Guid("57454149-3d5f-46f7-ad67-59c9c20e4b8a"),
+                            ModelId = new Guid("2b22dd33-eccf-4f04-a52c-4ac4df78720b"),
                             SerialNumber = "110"
                         });
                 });
@@ -169,7 +172,7 @@ namespace BikeRentalPoint.Infrastructure.EfCore.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("26af4f3e-a8ce-4780-ba61-11c1b02e8c8f"),
+                            Id = new Guid("6a9c0efe-2bc0-4e64-9c4f-fdc9fff23108"),
                             BikeType = 0,
                             BikeWeight = 9.0,
                             BrakeType = 1,
@@ -180,7 +183,7 @@ namespace BikeRentalPoint.Infrastructure.EfCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("01c16a54-51b0-4e1d-baa0-cbd9edfb1e68"),
+                            Id = new Guid("671e5425-28a2-4d9f-bc07-5dd81f8f3c64"),
                             BikeType = 1,
                             BikeWeight = 11.0,
                             BrakeType = 0,
@@ -191,7 +194,7 @@ namespace BikeRentalPoint.Infrastructure.EfCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("ab60dde3-c3b4-4424-98a5-523596d84e49"),
+                            Id = new Guid("b5b6735d-45fa-4c62-b653-db81f7121d84"),
                             BikeType = 1,
                             BikeWeight = 13.0,
                             BrakeType = 1,
@@ -202,7 +205,7 @@ namespace BikeRentalPoint.Infrastructure.EfCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("29a4a967-f786-460b-aa3a-09fe77ebc4cd"),
+                            Id = new Guid("4d46e705-4b64-40d3-8883-f12934993abc"),
                             BikeType = 2,
                             BikeWeight = 10.0,
                             BrakeType = 0,
@@ -213,7 +216,7 @@ namespace BikeRentalPoint.Infrastructure.EfCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("001e6fcd-5a65-4592-8475-598bae3421bc"),
+                            Id = new Guid("8dea56e8-6982-4339-8a8b-5b08b43e36be"),
                             BikeType = 0,
                             BikeWeight = 12.0,
                             BrakeType = 2,
@@ -224,7 +227,7 @@ namespace BikeRentalPoint.Infrastructure.EfCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("86571f83-df76-49d4-8066-3d778049c98d"),
+                            Id = new Guid("e45334d8-7bd4-4d04-ba7a-9a382185c4f9"),
                             BikeType = 4,
                             BikeWeight = 8.0,
                             BrakeType = 3,
@@ -235,7 +238,7 @@ namespace BikeRentalPoint.Infrastructure.EfCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("950a5ff4-beb7-42ae-9fe2-bc6a351fe380"),
+                            Id = new Guid("e2ad9828-414d-409e-b3e1-344ff44b19c1"),
                             BikeType = 3,
                             BikeWeight = 14.0,
                             BrakeType = 1,
@@ -246,7 +249,7 @@ namespace BikeRentalPoint.Infrastructure.EfCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("223d4e89-84d2-4606-88db-5cbb6649dbfc"),
+                            Id = new Guid("e7c23725-116a-4e40-a1cc-660a5373d188"),
                             BikeType = 1,
                             BikeWeight = 15.0,
                             BrakeType = 5,
@@ -257,7 +260,7 @@ namespace BikeRentalPoint.Infrastructure.EfCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("ed8f35b4-7af5-4681-a8a7-b18d0227f3aa"),
+                            Id = new Guid("b8061bf4-0826-43e6-9cbc-41ee8452d755"),
                             BikeType = 2,
                             BikeWeight = 11.0,
                             BrakeType = 0,
@@ -268,7 +271,7 @@ namespace BikeRentalPoint.Infrastructure.EfCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("57454149-3d5f-46f7-ad67-59c9c20e4b8a"),
+                            Id = new Guid("2b22dd33-eccf-4f04-a52c-4ac4df78720b"),
                             BikeType = 0,
                             BikeWeight = 12.0,
                             BrakeType = 1,
@@ -313,147 +316,147 @@ namespace BikeRentalPoint.Infrastructure.EfCore.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("db9a469b-7715-4d1d-9381-69c23a954c5f"),
-                            BikeId = new Guid("7cbe88b3-efd6-43d3-abf3-ac8e8d9ea158"),
+                            Id = new Guid("080e7d48-2167-4bcd-9123-1dbbf2a8f1af"),
+                            BikeId = new Guid("f7ea642e-c7d8-4a66-9660-757e1d55e1f2"),
                             Duration = new TimeSpan(0, 2, 0, 0, 0),
-                            RenterId = new Guid("bbc8ef69-6b1a-4d19-bf96-72dbf6a3b86d"),
-                            StartTime = new DateTime(2025, 12, 22, 12, 38, 21, 354, DateTimeKind.Local).AddTicks(763)
+                            RenterId = new Guid("e3803c2c-1d4f-4a94-b6e8-43418b11cf3d"),
+                            StartTime = new DateTime(2025, 12, 22, 12, 34, 24, 298, DateTimeKind.Local).AddTicks(5363)
                         },
                         new
                         {
-                            Id = new Guid("a3ce076e-bec2-4329-95d3-5b6b8fb3fe92"),
-                            BikeId = new Guid("610365e0-c878-4296-a66f-e901fb12bbaa"),
+                            Id = new Guid("f47719be-6652-488c-ac6a-b90c2da6f02a"),
+                            BikeId = new Guid("80cf1be0-4bd7-40b2-9e48-b86cb56fff12"),
                             Duration = new TimeSpan(0, 3, 0, 0, 0),
-                            RenterId = new Guid("743960e3-0371-47c8-80f5-c62f461decaf"),
-                            StartTime = new DateTime(2025, 12, 22, 22, 38, 21, 354, DateTimeKind.Local).AddTicks(1652)
+                            RenterId = new Guid("aea707e2-152c-44b3-b40b-e46a0a9d0047"),
+                            StartTime = new DateTime(2025, 12, 22, 22, 34, 24, 298, DateTimeKind.Local).AddTicks(6288)
                         },
                         new
                         {
-                            Id = new Guid("c380d0db-8558-4f2f-83a6-ae01b2425f15"),
-                            BikeId = new Guid("623f5102-30c6-4b97-a492-f6ad9bc6cd20"),
+                            Id = new Guid("fd52bef8-dbe2-43b5-b8e5-bb688c60903c"),
+                            BikeId = new Guid("160e4ff6-8a73-4df8-be70-a97a5428ee83"),
                             Duration = new TimeSpan(0, 4, 0, 0, 0),
-                            RenterId = new Guid("0841a662-5040-447a-8691-bc4e7f3368a4"),
-                            StartTime = new DateTime(2025, 12, 23, 8, 38, 21, 354, DateTimeKind.Local).AddTicks(1659)
+                            RenterId = new Guid("8275540f-31af-4291-b809-373d9291c5e0"),
+                            StartTime = new DateTime(2025, 12, 23, 8, 34, 24, 298, DateTimeKind.Local).AddTicks(6297)
                         },
                         new
                         {
-                            Id = new Guid("2414c2de-fd19-4d38-a4ca-45d664cf71ce"),
-                            BikeId = new Guid("ad3afcbe-6b97-4b96-8ba2-deaf5d2c53b5"),
+                            Id = new Guid("4de3abf1-efc7-4a16-b34d-70375969fc3a"),
+                            BikeId = new Guid("2cc7ef72-0a74-4cdd-83a9-c3e163f0dd70"),
                             Duration = new TimeSpan(0, 1, 30, 0, 0),
-                            RenterId = new Guid("027ed055-e56d-489d-9c3f-7f842632c3f7"),
-                            StartTime = new DateTime(2025, 12, 23, 18, 38, 21, 354, DateTimeKind.Local).AddTicks(1664)
+                            RenterId = new Guid("4eec356c-e16c-4f83-b01a-acb228d09e35"),
+                            StartTime = new DateTime(2025, 12, 23, 18, 34, 24, 298, DateTimeKind.Local).AddTicks(6300)
                         },
                         new
                         {
-                            Id = new Guid("fc380d30-e92d-4178-8f32-b9f3466529a5"),
-                            BikeId = new Guid("b60d7365-728c-4801-984b-45f47a23876d"),
+                            Id = new Guid("31777f35-0c75-4f73-b06e-282d822c1392"),
+                            BikeId = new Guid("b6ce7e19-cd47-4fd6-a531-c48e5809d555"),
                             Duration = new TimeSpan(0, 2, 30, 0, 0),
-                            RenterId = new Guid("a46b03d5-195b-4dfd-9958-a89d1c4094d2"),
-                            StartTime = new DateTime(2025, 12, 24, 4, 38, 21, 354, DateTimeKind.Local).AddTicks(1667)
+                            RenterId = new Guid("e5b43429-1e08-44e1-ade2-5307812fa40f"),
+                            StartTime = new DateTime(2025, 12, 24, 4, 34, 24, 298, DateTimeKind.Local).AddTicks(6306)
                         },
                         new
                         {
-                            Id = new Guid("d0e5f183-638a-45a0-8c9f-05761b6d7558"),
-                            BikeId = new Guid("1d12d97a-593b-4a03-b151-d65bf8aa3a84"),
+                            Id = new Guid("d7ec7795-9c7a-4814-8029-f1fa336f291a"),
+                            BikeId = new Guid("aad23158-ce0b-41ac-836b-a66c0a57ce30"),
                             Duration = new TimeSpan(0, 5, 0, 0, 0),
-                            RenterId = new Guid("714ac5c6-ba03-4139-9800-10fb23d2c067"),
-                            StartTime = new DateTime(2025, 12, 24, 9, 38, 21, 354, DateTimeKind.Local).AddTicks(1670)
+                            RenterId = new Guid("a4029112-136c-4689-bfca-f8b64afc9b87"),
+                            StartTime = new DateTime(2025, 12, 24, 9, 34, 24, 298, DateTimeKind.Local).AddTicks(6309)
                         },
                         new
                         {
-                            Id = new Guid("cea82580-1108-4416-bcf9-8dc19b749cf5"),
-                            BikeId = new Guid("3d57e48d-c20b-4beb-bf0f-0050a490fa4c"),
+                            Id = new Guid("a6e03ffb-f13c-452f-a818-83a411941a1b"),
+                            BikeId = new Guid("4948faf4-935b-4d9a-800a-4e2816760d68"),
                             Duration = new TimeSpan(0, 6, 0, 0, 0),
-                            RenterId = new Guid("72da748d-2127-42ce-8171-9343bb8e2658"),
-                            StartTime = new DateTime(2025, 12, 24, 11, 38, 21, 354, DateTimeKind.Local).AddTicks(1673)
+                            RenterId = new Guid("ff8c419a-401a-46b9-a544-a3d9f81e96de"),
+                            StartTime = new DateTime(2025, 12, 24, 11, 34, 24, 298, DateTimeKind.Local).AddTicks(6311)
                         },
                         new
                         {
-                            Id = new Guid("a23dfdd1-45c2-4191-b768-9f5d5f869929"),
-                            BikeId = new Guid("c39de33e-b0fe-4ec8-bb97-02dcd929528c"),
+                            Id = new Guid("db62ab99-6af9-4620-a96f-31c9e9d99344"),
+                            BikeId = new Guid("d546a410-ebd2-49cc-a6cf-e9e0eb3c3daa"),
                             Duration = new TimeSpan(0, 2, 30, 0, 0),
-                            RenterId = new Guid("c6d08001-9232-471e-a82e-f5da8f461ce6"),
-                            StartTime = new DateTime(2025, 12, 24, 12, 38, 21, 354, DateTimeKind.Local).AddTicks(1675)
+                            RenterId = new Guid("81ecca56-1aef-481c-a15b-a64f43e22df0"),
+                            StartTime = new DateTime(2025, 12, 24, 12, 34, 24, 298, DateTimeKind.Local).AddTicks(6326)
                         },
                         new
                         {
-                            Id = new Guid("56951888-d020-41bb-929a-88020ac64842"),
-                            BikeId = new Guid("6e872a9a-bacb-4d0d-baa0-b72af61a56a7"),
+                            Id = new Guid("d0176ef7-5c84-4c72-b91b-b2591f9457ab"),
+                            BikeId = new Guid("dfecdb38-11f8-4d75-ba9c-35787ff76810"),
                             Duration = new TimeSpan(0, 3, 30, 0, 0),
-                            RenterId = new Guid("ba0fade0-8861-4f6f-b308-238883bb2909"),
-                            StartTime = new DateTime(2025, 12, 24, 13, 38, 21, 354, DateTimeKind.Local).AddTicks(1678)
+                            RenterId = new Guid("4b45a861-d993-4f44-87c4-fac41fb6494b"),
+                            StartTime = new DateTime(2025, 12, 24, 13, 34, 24, 298, DateTimeKind.Local).AddTicks(6329)
                         },
                         new
                         {
-                            Id = new Guid("7e0cfe15-d60c-4eb2-94b8-2234266d6331"),
-                            BikeId = new Guid("623f5102-30c6-4b97-a492-f6ad9bc6cd20"),
+                            Id = new Guid("a037529b-b217-4f53-beea-172461c4ddc2"),
+                            BikeId = new Guid("160e4ff6-8a73-4df8-be70-a97a5428ee83"),
                             Duration = new TimeSpan(0, 3, 0, 0, 0),
-                            RenterId = new Guid("bbc8ef69-6b1a-4d19-bf96-72dbf6a3b86d"),
-                            StartTime = new DateTime(2025, 12, 23, 13, 38, 21, 354, DateTimeKind.Local).AddTicks(1683)
+                            RenterId = new Guid("e3803c2c-1d4f-4a94-b6e8-43418b11cf3d"),
+                            StartTime = new DateTime(2025, 12, 23, 13, 34, 24, 298, DateTimeKind.Local).AddTicks(6332)
                         },
                         new
                         {
-                            Id = new Guid("b9771db7-09ce-426b-8b10-ab23548f46b8"),
-                            BikeId = new Guid("3d57e48d-c20b-4beb-bf0f-0050a490fa4c"),
+                            Id = new Guid("7c9937af-d8f8-4b61-8d95-40c8bd0f5488"),
+                            BikeId = new Guid("4948faf4-935b-4d9a-800a-4e2816760d68"),
                             Duration = new TimeSpan(0, 2, 0, 0, 0),
-                            RenterId = new Guid("743960e3-0371-47c8-80f5-c62f461decaf"),
-                            StartTime = new DateTime(2025, 12, 23, 23, 38, 21, 354, DateTimeKind.Local).AddTicks(1685)
+                            RenterId = new Guid("aea707e2-152c-44b3-b40b-e46a0a9d0047"),
+                            StartTime = new DateTime(2025, 12, 23, 23, 34, 24, 298, DateTimeKind.Local).AddTicks(6334)
                         },
                         new
                         {
-                            Id = new Guid("12a23d94-4b4f-4bec-9d7c-86093a2eec78"),
-                            BikeId = new Guid("c39de33e-b0fe-4ec8-bb97-02dcd929528c"),
+                            Id = new Guid("fbc6af3c-701b-49cf-949f-41df984271cd"),
+                            BikeId = new Guid("d546a410-ebd2-49cc-a6cf-e9e0eb3c3daa"),
                             Duration = new TimeSpan(0, 5, 0, 0, 0),
-                            RenterId = new Guid("027ed055-e56d-489d-9c3f-7f842632c3f7"),
-                            StartTime = new DateTime(2025, 12, 24, 2, 38, 21, 354, DateTimeKind.Local).AddTicks(1688)
+                            RenterId = new Guid("4eec356c-e16c-4f83-b01a-acb228d09e35"),
+                            StartTime = new DateTime(2025, 12, 24, 2, 34, 24, 298, DateTimeKind.Local).AddTicks(6337)
                         },
                         new
                         {
-                            Id = new Guid("dfae4011-d364-419b-991d-5c39facfd611"),
-                            BikeId = new Guid("b60d7365-728c-4801-984b-45f47a23876d"),
+                            Id = new Guid("c2f7bc0b-834d-4930-8b2b-57c9bd76e35a"),
+                            BikeId = new Guid("b6ce7e19-cd47-4fd6-a531-c48e5809d555"),
                             Duration = new TimeSpan(0, 4, 0, 0, 0),
-                            RenterId = new Guid("714ac5c6-ba03-4139-9800-10fb23d2c067"),
-                            StartTime = new DateTime(2025, 12, 24, 6, 38, 21, 354, DateTimeKind.Local).AddTicks(1691)
+                            RenterId = new Guid("a4029112-136c-4689-bfca-f8b64afc9b87"),
+                            StartTime = new DateTime(2025, 12, 24, 6, 34, 24, 298, DateTimeKind.Local).AddTicks(6341)
                         },
                         new
                         {
-                            Id = new Guid("4990a0d6-9b8c-431f-814b-c7da104fd90e"),
-                            BikeId = new Guid("1d12d97a-593b-4a03-b151-d65bf8aa3a84"),
+                            Id = new Guid("37a0baf3-cc36-4d2d-ac2c-209584154ccd"),
+                            BikeId = new Guid("aad23158-ce0b-41ac-836b-a66c0a57ce30"),
                             Duration = new TimeSpan(0, 2, 30, 0, 0),
-                            RenterId = new Guid("c6d08001-9232-471e-a82e-f5da8f461ce6"),
-                            StartTime = new DateTime(2025, 12, 24, 8, 38, 21, 354, DateTimeKind.Local).AddTicks(1694)
+                            RenterId = new Guid("81ecca56-1aef-481c-a15b-a64f43e22df0"),
+                            StartTime = new DateTime(2025, 12, 24, 8, 34, 24, 298, DateTimeKind.Local).AddTicks(6344)
                         },
                         new
                         {
-                            Id = new Guid("eb21a9f9-14cd-41b4-b668-4682ca1dba75"),
-                            BikeId = new Guid("ad3afcbe-6b97-4b96-8ba2-deaf5d2c53b5"),
+                            Id = new Guid("fe68990f-5ccf-4025-91bd-06958a0d5e83"),
+                            BikeId = new Guid("2cc7ef72-0a74-4cdd-83a9-c3e163f0dd70"),
                             Duration = new TimeSpan(0, 3, 30, 0, 0),
-                            RenterId = new Guid("ba0fade0-8861-4f6f-b308-238883bb2909"),
-                            StartTime = new DateTime(2025, 12, 24, 10, 38, 21, 354, DateTimeKind.Local).AddTicks(1697)
+                            RenterId = new Guid("4b45a861-d993-4f44-87c4-fac41fb6494b"),
+                            StartTime = new DateTime(2025, 12, 24, 10, 34, 24, 298, DateTimeKind.Local).AddTicks(6347)
                         },
                         new
                         {
-                            Id = new Guid("03dad402-2417-4efc-976c-59e0150beae2"),
-                            BikeId = new Guid("9a49bfd3-fe3b-43f5-a884-fb2136488f54"),
+                            Id = new Guid("2aeb83b7-11b7-45de-927d-fa53ae799ec6"),
+                            BikeId = new Guid("8cdfc712-b2b0-451a-8196-358529d251ac"),
                             Duration = new TimeSpan(0, 2, 0, 0, 0),
-                            RenterId = new Guid("bbc8ef69-6b1a-4d19-bf96-72dbf6a3b86d"),
-                            StartTime = new DateTime(2025, 12, 24, 13, 8, 21, 354, DateTimeKind.Local).AddTicks(1699)
+                            RenterId = new Guid("e3803c2c-1d4f-4a94-b6e8-43418b11cf3d"),
+                            StartTime = new DateTime(2025, 12, 24, 13, 4, 24, 298, DateTimeKind.Local).AddTicks(6349)
                         },
                         new
                         {
-                            Id = new Guid("addd5449-33e9-4e1b-80b6-47e1457e6164"),
-                            BikeId = new Guid("c39de33e-b0fe-4ec8-bb97-02dcd929528c"),
+                            Id = new Guid("5e7242b3-1798-4a69-b5c2-ce3ac97c132e"),
+                            BikeId = new Guid("d546a410-ebd2-49cc-a6cf-e9e0eb3c3daa"),
                             Duration = new TimeSpan(0, 3, 0, 0, 0),
-                            RenterId = new Guid("0841a662-5040-447a-8691-bc4e7f3368a4"),
-                            StartTime = new DateTime(2025, 12, 24, 14, 8, 21, 354, DateTimeKind.Local).AddTicks(1702)
+                            RenterId = new Guid("8275540f-31af-4291-b809-373d9291c5e0"),
+                            StartTime = new DateTime(2025, 12, 24, 14, 4, 24, 298, DateTimeKind.Local).AddTicks(6352)
                         },
                         new
                         {
-                            Id = new Guid("0989bc71-2c42-4cfd-bcaa-b95ab9c1c195"),
-                            BikeId = new Guid("1d12d97a-593b-4a03-b151-d65bf8aa3a84"),
+                            Id = new Guid("86ea8960-4861-420f-a8b1-26fcff8ead54"),
+                            BikeId = new Guid("aad23158-ce0b-41ac-836b-a66c0a57ce30"),
                             Duration = new TimeSpan(0, 2, 0, 0, 0),
-                            RenterId = new Guid("a46b03d5-195b-4dfd-9958-a89d1c4094d2"),
-                            StartTime = new DateTime(2025, 12, 24, 14, 26, 21, 354, DateTimeKind.Local).AddTicks(1706)
+                            RenterId = new Guid("e5b43429-1e08-44e1-ade2-5307812fa40f"),
+                            StartTime = new DateTime(2025, 12, 24, 14, 22, 24, 298, DateTimeKind.Local).AddTicks(6354)
                         });
                 });
 
@@ -494,7 +497,7 @@ namespace BikeRentalPoint.Infrastructure.EfCore.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("bbc8ef69-6b1a-4d19-bf96-72dbf6a3b86d"),
+                            Id = new Guid("e3803c2c-1d4f-4a94-b6e8-43418b11cf3d"),
                             LastName = "Иванов",
                             MiddleName = "Иванович",
                             Name = "Иван",
@@ -502,7 +505,7 @@ namespace BikeRentalPoint.Infrastructure.EfCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("743960e3-0371-47c8-80f5-c62f461decaf"),
+                            Id = new Guid("aea707e2-152c-44b3-b40b-e46a0a9d0047"),
                             LastName = "Петров",
                             MiddleName = "Петрович",
                             Name = "Петр",
@@ -510,7 +513,7 @@ namespace BikeRentalPoint.Infrastructure.EfCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("0841a662-5040-447a-8691-bc4e7f3368a4"),
+                            Id = new Guid("8275540f-31af-4291-b809-373d9291c5e0"),
                             LastName = "Сидоров",
                             MiddleName = "Сидорович",
                             Name = "Сидор",
@@ -518,7 +521,7 @@ namespace BikeRentalPoint.Infrastructure.EfCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("027ed055-e56d-489d-9c3f-7f842632c3f7"),
+                            Id = new Guid("4eec356c-e16c-4f83-b01a-acb228d09e35"),
                             LastName = "Алексеев",
                             MiddleName = "Николаевич",
                             Name = "Алексей",
@@ -526,7 +529,7 @@ namespace BikeRentalPoint.Infrastructure.EfCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("a46b03d5-195b-4dfd-9958-a89d1c4094d2"),
+                            Id = new Guid("e5b43429-1e08-44e1-ade2-5307812fa40f"),
                             LastName = "Васильев",
                             MiddleName = "Павлович",
                             Name = "Василий",
@@ -534,7 +537,7 @@ namespace BikeRentalPoint.Infrastructure.EfCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("714ac5c6-ba03-4139-9800-10fb23d2c067"),
+                            Id = new Guid("a4029112-136c-4689-bfca-f8b64afc9b87"),
                             LastName = "Кузнецов",
                             MiddleName = "Игоревич",
                             Name = "Сергей",
@@ -542,7 +545,7 @@ namespace BikeRentalPoint.Infrastructure.EfCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("72da748d-2127-42ce-8171-9343bb8e2658"),
+                            Id = new Guid("ff8c419a-401a-46b9-a544-a3d9f81e96de"),
                             LastName = "Никитин",
                             MiddleName = "Андреевич",
                             Name = "Никита",
@@ -550,7 +553,7 @@ namespace BikeRentalPoint.Infrastructure.EfCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("c6d08001-9232-471e-a82e-f5da8f461ce6"),
+                            Id = new Guid("81ecca56-1aef-481c-a15b-a64f43e22df0"),
                             LastName = "Федоров",
                             MiddleName = "Владимирович",
                             Name = "Федор",
@@ -558,7 +561,7 @@ namespace BikeRentalPoint.Infrastructure.EfCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("ba0fade0-8861-4f6f-b308-238883bb2909"),
+                            Id = new Guid("4b45a861-d993-4f44-87c4-fac41fb6494b"),
                             LastName = "Смирнов",
                             MiddleName = "Валерьевич",
                             Name = "Семен",
@@ -566,7 +569,7 @@ namespace BikeRentalPoint.Infrastructure.EfCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("c3ace681-d7cc-4f78-8986-17177396f976"),
+                            Id = new Guid("c2c0b965-9a05-49cb-8051-5ce6d26761af"),
                             LastName = "Попов",
                             MiddleName = "Алексеевич",
                             Name = "Дмитрий",

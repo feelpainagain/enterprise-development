@@ -11,11 +11,13 @@ using BikeRentalPoint.Domain.Dataseed;
 using BikeRentalPoint.Domain.Models;
 using BikeRentalPoint.Infrastructure.EfCore;
 using BikeRentalPoint.Infrastructure.EfCore.Repository;
-using Microsoft.EntityFrameworkCore;
-using System.Text.Json.Serialization;
 using BikeRentalPoint.ServiceDefaults;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using System.Text.Json.Serialization;
 
 using BikeRentalPoint.Api.Host.Grpc;
+using BikeRentalPoint.Api.Host.Grpc.Mappers;   // ← профиль gRPC
 using BikeRentalPoint.Grpc.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,16 +38,26 @@ builder.Services.AddSwaggerGen(c =>
         if (File.Exists(xmlPath))
             c.IncludeXmlComments(xmlPath);
     }
+
     c.UseInlineDefinitionsForEnums();
 });
 
-builder.Services.AddAutoMapper(typeof(BikeRentalProfile));
+// регистрируем и доменный профиль, и gRPC-профиль
+builder.Services.AddAutoMapper(
+    typeof(BikeRentalProfile),
+    typeof(GrpcContractsToDomainProfile));
 
 builder.Services.AddSingleton<DataSeeder>();
 
 builder.AddMySqlDbContext<BikeRentalPointDbContext>(
     connectionName: "DefaultConnection",
-    configureDbContextOptions: builder => builder.UseLazyLoadingProxies());
+    configureDbContextOptions: options =>
+    {
+        options.UseLazyLoadingProxies();
+
+        options.ConfigureWarnings(w =>
+            w.Ignore(RelationalEventId.PendingModelChangesWarning));
+    });
 
 builder.Services.AddControllers().AddJsonOptions(o =>
 {
@@ -63,10 +75,10 @@ builder.Services.AddScoped<IApplicationService<RenterDto, CreateRenterDto, Guid>
 builder.Services.AddScoped<IRentService, RentService>();
 builder.Services.AddScoped<IAnalyticsService, AnalyticsService>();
 
-// gRPC‑клиент к генератору
+// gRPC‑клиент к генератору (HTTPS, как в launchSettings сервера)
 builder.Services.AddGrpcClient<GenerationService.GenerationServiceClient>(o =>
 {
-    o.Address = new Uri("http://localhost:5002"); // только адрес
+    o.Address = new Uri("https://localhost:5002");
 });
 
 // consumer
